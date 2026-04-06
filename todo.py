@@ -8,9 +8,9 @@ import random
 
 list = []
 
-def adding_task(task_list, task, id=random.randint(0,100), description="", status="to do", created_at=datetime.datetime.now().strftime("%d %B %Y")):
-    task_list.append({"task": task, "id": id, "description": description, "status": status, "created_at": created_at})
-    print(f"{task} added to list (ID: {id})")
+def adding_task(task_list, task, id="", description="", status="to do", created_at=datetime.datetime.now().strftime("%d %B %Y")):
+    task_list.append({"task": task, "id": random.randint (0,100), "description": description, "status": status, "created_at": created_at})
+    print(f"{task} added to list (ID: )")
     return task_list
 
 def updating_task(task_list, task, description, updated=datetime.datetime.now().strftime("%d %B %Y")):
@@ -21,13 +21,23 @@ def updating_task(task_list, task, description, updated=datetime.datetime.now().
             print(f"{task} description updated to {description}")
             return task_list
 
+def delete_task(task_list, task):
+    for tasks in task_list:
+        if tasks["task"] == task:
+            task_list.remove(tasks)
+            return task_list
+    if task not in task_list:
+        print(f"{task} not in list")
 
 
-'''
+
 adding_task(list, "swimming")
-
+adding_task(list, "sleeping")
 print (list)
 
 updating_task(list, "swimming", "going to the pool")
 
-print(list)'''
+print(list)
+
+delete_task(list, "sleeping")
+print(list)
