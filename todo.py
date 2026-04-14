@@ -55,17 +55,47 @@ def update_status(task_list, task, status, updated=datetime.datetime.now().strft
 
 #up to creating a menu to add, update description or status, delete task, list all task, list by status
 
-print("--Menu--")
-print("1. Add task")
-print("2. Update task")
-print("3. Delete task")
-print("4. Print tasks")
+def show_menu():
+    print("--Menu--")
+    print("1. Add task")
+    print("2. Update task")
+    print("3. Delete task")
+    print("4. Print tasks")
+    print("5. Exit")
 
-choice = int(input("Enter your choice: "))
 list = loading_file()
-if choice == 1:
-    task_name = input("Enter task name: ")
-    task_description = input("Enter task description: ")
-    saving_file(list)
 
+while True:
+    show_menu()
+    choice = int(input("Enter your choice: "))
+
+    if choice == 5:
+        print ("Exiting...")
+        break
+    elif choice == 1:
+        task_name = input("Enter task name: ")
+        task_description = input("Enter task description: ")
+        adding_task(list, task_name, task_description)
+        saving_file(list)
+    elif choice == 2:
+        print("Do you want to update 1. Description or 2. Status")
+        pick = int(input("Enter your choice: "))
+        if pick == 1:
+            task_name = input("Enter task name: ")
+            task_description = input("Enter task description: ")
+            update_status(list, task_name, task_description)
+            saving_file(list)
+        elif pick == 2:
+            task_name = input("Enter task name: ")
+            task_status = input("Enter task status: ")
+            update_status(list, task_name, task_status)
+            saving_file(list)
+    elif choice == 3:
+        printing_tasks(list)
+        print("Which task would you like to delete?")
+        deleting_task = str(input("Enter the task: "))
+        delete_task(list, deleting_task)
+        saving_file(list)
+    elif choice == 4:
+        printing_tasks(list)
 
