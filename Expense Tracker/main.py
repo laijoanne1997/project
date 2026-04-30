@@ -30,8 +30,14 @@ def display_expense(list):
         print(f"ID:{item['id']} | Amount: ${item['amount']} | Description: {item['description']}")
 
 #view summary of all expenses
+def categorised_expenses(list, description):
+    total_cost = 0
+    for items in list:
+        if items["description"].lower() == description.lower():
+            total_cost += int(items["amount"])
+    print(f"Total cost of {description}: {total_cost}")
 
-#view summary of expense for specific month (of current yer)
+
 
 list = []
 
@@ -62,3 +68,10 @@ while True:
         delete_expense(list, id)
     elif choice == 4:
         display_expense(list)
+        by_category = input("\nDo you want to display the total for a decription/category (y/n): ")
+        if by_category == "y":
+            description = input("What category would you like to see: ")
+            categorised_expenses(list, description)
+        if by_category == "n":
+            continue
+
