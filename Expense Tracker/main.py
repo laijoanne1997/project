@@ -37,9 +37,6 @@ def categorised_expenses(list, description):
             total_cost += int(items["amount"])
     print(f"Total cost of {description}: {total_cost}")
 
-
-
-
 list = []
 
 def main():
